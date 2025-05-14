@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <th:block th:replace="~{fragments/head :: head(${page})}"></th:block>
+  <body>
+    <th:block th:replace="fragments/header :: header"></th:block>
+
+    <main class="show-page">
+      <div class="container">
+        <div class="show-page-container">
+          <h1 th:if="${page} == games">[[${item.name}]]</h1>
+          <h1 th:if="${page} == songs">[[${item.name}]]</h1>
+          <h1 th:if="${page} == movies">[[${item.title}]]</h1>
+          <h1 th:if="${page} == books">[[${item.title}]]</h1>
+
+          <div class="show-page-content">
+            <div class="show-page-image">
+              <img th:if="${page} == games" th:src="@{/img/games-img/} + ${item.image}" alt="">
+              <img th:if="${page} == movies" th:src="@{/img/movies-img/} + ${item.image}" alt="">
+              <img th:if="${page} == songs" th:src="@{/img/songs-img/} + ${item.image}" alt="">
+              <img th:if="${page} == books" th:src="@{/img/books-img/} + ${item.image}" alt="">
+              <img th:if="${item.image == '' || item.image == null}" th:src="@{https://placehold.co/400x600/png}" alt="Image of [[${item}]]" />
+            </div>
+            <div class="show-page-description">
+              
+              <!-- -- games -- -->
+              <p th:if="${page} == games"><strong>Descrizione: </strong>[[${item.description}]]</p>
+              <p th:if="${page} == games"><strong>Genere: </strong>[[${item.genre}]]</p>
+              <div th:if="${page} == games" class="show-page-platform">
+                <span><strong>Piattaforme compatibili: </strong></span>
+                <ul>
+                  <li th:each="platform : ${item.platforms}"> [[${platform}]]</li>
+                </ul>
+              </div>
+
+              <!-- -- movies -- -->
+              <p th:if="${page} == movies"><strong>Descrizione: </strong>[[${item.description}]]</p>
+              <p th:if="${page} == movies"><strong>Durata: </strong>[[${item.duration}]]</p>
+              <p th:if="${page} == movies"><strong>Data di uscita: </strong>[[${item.releaseDate}]]</p>
+              <div th:if="${page} == movies" class="show-page-genres">
+              <span><strong>Generi: </strong></span>
+              <ul>
+                <li th:each="genres : ${item.genres}"> [[${genres}]]</li>
+              </ul>
+              </div>
+
+              <!-- -- songs -- -->
+               <p th:if="${page} == songs"><strong>Artista: </strong>[[${item.artist}]]</p>
+               <p th:if="${page} == songs"><strong>Durata: </strong>[[${item.duration}]]</p>
+               <p th:if="${page} == songs"><strong>Album: </strong>[[${item.album}]]</p>
+
+              <!-- -- books -- -->
+              <p th:if="${page} == books"><strong>Descrizione: </strong>[[${item.description}]]</p>
+              <p th:if="${page} == books"><strong>Autore: </strong>[[${item.author}]]</p>
+              <p th:if="${page} == books"><strong>Data di pubblicazione: </strong>[[${item.publicationDate}]]</p>
+              <p th:if="${page} == books"><strong>ISBN: </strong>[[${item.isbn}]]</p>
+
+            </div>
+        </div>
+
+        
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title fs-5" id="exampleModalLabel">Elimina [[${item.name}]]</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Sicuro di voler eliminare [[${item.name}]]?</p>
+                <p>Questa azione non può essere annullata.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <form th:action="@{/games/delete/} + ${item.id}" method="post">
+                  <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div sec:authorize="hasAuthority('ADMIN')" class="action-button">
+    
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Elimina
+          </button>
+
+          <a th:href="@{/} + ${page} + @{/edit/} + ${item.id}" class="modify-btn">
+            <button class="btn btn-outline-secondary">Modifica</button>
+          </a>
+          
+        </div>
+
+        <a th:href="@{/games}" class="back-btn">
+          <img th:src="@{/img/back-btn.png}" alt="">
+        </a>
+      </div>
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+</html>

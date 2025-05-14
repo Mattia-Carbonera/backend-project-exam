@@ -1,0 +1,61 @@
+<a
+  class="card-link"
+  th:href="@{http://localhost:8080/} + ${page} + @{/{id}(id=${item.id})}"
+  th:fragment="card(item, page)"
+  draggable="true"
+  th:data-id="${item.id}"
+  th:data-name="${item.name}"
+>
+  <div class="card">
+    <div class="card-img-container">
+      <!-- games -->
+      <img
+        th:if="${page} == games"
+        class="card-img-top h-w-100"
+        th:src="@{/img/games-img/} + ${item.image}"
+        th:alt="${item.name}"
+        alt="Image"
+      />
+
+      <!-- movies -->
+      <img
+        th:if="${page} == movies"
+        class="card-img-top h-w-100"
+        th:src="@{/img/movies-img/} + ${item.image}"
+        th:alt="${item.title}"
+        alt="Image"
+      />
+
+      <!-- songs -->
+      <img
+        th:if="${page} == songs"
+        class="card-img-top"
+        th:src="@{/img/songs-img/} + ${item.image}"
+        th:alt="${item.name}"
+        alt="Image"
+      />
+
+      <!-- books -->
+      <img
+        th:if="${page} == books"
+        class="card-img-top h-w-100"
+        th:src="@{/img/books-img/} + ${item.image}"
+        th:alt="${item.title}"
+        alt="Image"
+      />
+
+      <img
+        th:if="${item.image == '' || item.image == null}"
+        class="card-img-top"
+        src="https://placehold.co/400x600/png"
+        alt="Image"
+      />
+    </div>
+    <div class="card-body">
+      <h3 th:if="${page} == games">[[${item.name}]]</h3>
+      <h3 th:if="${page} == songs">[[${item.name}]]</h3>
+      <h3 th:if="${page} == movies">[[${item.title}]]</h3>
+      <h3 th:if="${page} == books">[[${item.title}]]</h3>
+    </div>
+  </div>
+</a>
