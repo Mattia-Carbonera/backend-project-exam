@@ -4,7 +4,7 @@
   th:fragment="card(item, page)"
   draggable="true"
   th:data-id="${item.id}"
-  th:data-name="${item.name}"
+  th:data-name="${page == 'games' && item.name != null ? item.name : ''}"
 >
   <div class="card">
     <div class="card-img-container">

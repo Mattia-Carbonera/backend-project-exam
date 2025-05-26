@@ -227,18 +227,18 @@ html {
 }
 
 .confirm-delete-modal {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 30%;
+  top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-delete-content {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 10px;
   padding: 1rem;
@@ -278,6 +278,19 @@ html {
   padding: 2rem;
 }
 
+#game-platforms {
+  cursor: pointer;
+}
+
+.platforms-info {
+  display: none;
+}
+
+#game-platforms:hover .platforms-info {
+  display: block;
+  color: gray;
+}
+
 .action-button {
   width: 100%;
   display: flex;
@@ -288,6 +301,47 @@ html {
 
 #exampleModal {
   color: black;
+}
+
+.trailer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 3rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.trailer-subcontainer {
+  position: relative;
+}
+
+#close-trailer {
+  z-index: 2;
+  cursor: pointer;
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  height: 2rem;
+  aspect-ratio: 1;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  padding: 1rem 0;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+video {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* * Create Update */
@@ -349,13 +403,28 @@ html {
 
 .login-container {
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  background: transparent;
+  backdrop-filter: blur(7px);
 
   width: 450px;
-  border: 1px solid black;
+  border: 0.7px solid white;
   border-radius: 10px;
   padding: 1.5rem;
   margin: 2rem;
+}
+
+.login-container input {
+  background: transparent;
+  color: white;
+  border: none;
+  border-radius: 0;
+  border-bottom: 0.7px solid white;
+}
+
+.login-container input:focus {
+  background: transparent;
+  color: white;
 }
 
 .credential-error {

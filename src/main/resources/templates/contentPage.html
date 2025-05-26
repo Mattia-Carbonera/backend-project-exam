@@ -111,7 +111,7 @@
           <div class="modal-btn-container">
             <button
               class="btn btn-secondary p-1"
-              onclick="document.querySelector('.confirm-delete-modal').classList.toggle('d-none')"
+              onclick="document.querySelector('.confirm-delete-modal').classList.toggle('d-none') && (document.body.style.overflow = 'auto')"
             >
               Annulla
             </button>
@@ -124,6 +124,7 @@
 
       <!-- trash btn -->
       <div
+        th:if="${page == 'games'}"
         sec:authorize="hasAuthority('ADMIN')"
         id="trash-bin"
         class="trash-dropzone"
@@ -168,6 +169,7 @@
       document
         .querySelector(".confirm-delete-modal")
         .classList.toggle("d-none");
+      document.body.style.overflow = "hidden";
     }
 
     window.scrollTo({
@@ -203,6 +205,7 @@
     }
 
     document.querySelector(".confirm-delete-modal").classList.toggle("d-none");
+    document.body.style.overflow = "auto";
   });
 
   <!-- * Info trash bin -->

@@ -28,7 +28,12 @@
               <div th:if="${page} == games" class="show-page-platform">
                 <span><strong>Piattaforme compatibili: </strong></span>
                 <ul>
-                  <li th:each="platform : ${item.platforms}"> [[${platform}]]</li>
+                  <li th:each="platform : ${item.platforms}" id="game-platforms"> [[${platform}]]
+
+                    <div class="platforms-info">
+                      <p>[[${platform.description}]]</p>
+                    </div>
+                  </li>
                 </ul>
               </div>
 
@@ -41,7 +46,12 @@
               <ul>
                 <li th:each="genres : ${item.genres}"> [[${genres}]]</li>
               </ul>
-              </div>
+            </div>
+
+            <!-- trailer -->
+            <button th:if="${page} == movies" class="btn btn-secondary" id="btn-trailer">Trailer</button>
+
+           
 
               <!-- -- songs -- -->
                <p th:if="${page} == songs"><strong>Artista: </strong>[[${item.artist}]]</p>
@@ -64,11 +74,11 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h2 class="modal-title fs-5" id="exampleModalLabel">Elimina [[${item.name}]]</h2>
+                <h2 th:if="${page == 'games' or page == 'songs'}" th:text="'Elimina ' + ${item.name}" class="modal-title fs-5" id="exampleModalLabel"></h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>Sicuro di voler eliminare [[${item.name}]]?</p>
+                <p th:if="${page == 'games' or page == 'songs'}" th:text="'Sicuro di voler eliminare ' + ${item.name} + '?'"></p>
                 <p>Questa azione non può essere annullata.</p>
               </div>
               <div class="modal-footer">
@@ -81,7 +91,7 @@
           </div>
         </div>
 
-        <div sec:authorize="hasAuthority('ADMIN')" class="action-button">
+        <div th:if="${page == 'games'}" sec:authorize="hasAuthority('ADMIN')" class="action-button">
     
           <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Elimina
@@ -93,9 +103,22 @@
           
         </div>
 
-        <a th:href="@{/games}" class="back-btn">
+        <a th:href="@{/} + ${page}" class="back-btn">
           <img th:src="@{/img/back-btn.png}" alt="">
         </a>
+      </div>
+
+      <!-- trailer modal -->
+      <div th:if="${page} == movies" class="trailer-container d-none" id="trailer-container">
+        <div class="trailer-subcontainer">
+          <span id="close-trailer">X</span>
+          <video id="trailer" controls>
+            <source
+              th:src="@{/video/trailer/} + ${item.trailer}"
+              type="video/mp4"
+            ></source>
+          </video>
+        </div>
       </div>
 
     </main>
@@ -103,3 +126,25 @@
 
   </body>
 </html>
+
+<script th:inline="javascript">
+  const btnTrailer = document.getElementById('btn-trailer');
+  const trailerContainer = document.getElementById('trailer-container');
+  const closeTrailer = document.getElementById('close-trailer');
+  const video = document.getElementById('trailer');
+  
+  btnTrailer.addEventListener('click', () => {
+    trailerContainer.classList.toggle('d-none');
+    window.scrollTo(0, 0);
+    video.play();
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeTrailer.addEventListener('click', () => {
+    video.pause();
+    video.currentTime = 0;
+    trailerContainer.classList.toggle('d-none');
+    document.body.style.overflow = 'auto';
+  });
+
+</script>
