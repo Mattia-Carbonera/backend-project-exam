@@ -24,3 +24,8 @@ INSERT INTO books_genres (book_id, genre_id) VALUES (1, 1), (1, 7), (2, 4), (3, 
 
 -- Associazioni film/generi
 INSERT INTO movies_genres (movie_id, genre_id) VALUES (1, 3), (1, 7), (2, 2), (3, 3), (4, 4), (5, 10), (6, 3), (7, 2), (8, 3), (9, 5), (10, 9), (11, 2), (12, 8), (13, 5), (14, 4), (15, 7);
+
+-- Security
+INSERT INTO `final_project_database`.`users` (`id`, `password`, `username`) VALUES ('1', '{noop}123456', 'mattia');
+INSERT INTO `final_project_database`.`roles` (`id`, `name`) VALUES ('1', 'ADMIN');
+INSERT INTO `final_project_database`.`role_user` (`role_id`, `user_id`) VALUES ('1', '1');

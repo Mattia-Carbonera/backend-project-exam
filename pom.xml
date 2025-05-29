@@ -76,7 +76,7 @@
 		    <artifactId>font-awesome</artifactId>
 		    <version>6.7.2</version>
 		</dependency>
-		<!-- * Dipendenze aggiuntive per implementare Spring Security  -->
+		<!-- * Spring Security  -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -86,7 +86,7 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- Aggiungiamo security anche per thymeleaf attraverso una dipendenza apposita -->
+		<!-- Security anche per thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>

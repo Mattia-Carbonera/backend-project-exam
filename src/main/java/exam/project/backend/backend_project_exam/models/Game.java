@@ -38,7 +38,7 @@ public class Game {
         name = "game_platforms",
         joinColumns = @JoinColumn(name = "game_id"),
         inverseJoinColumns = @JoinColumn(name = "platform_id")
-        )
+    )
     private List<Platform> platforms;
 
 

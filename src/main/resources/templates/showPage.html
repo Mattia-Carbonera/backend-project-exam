@@ -79,7 +79,7 @@
               </div>
               <div class="modal-body">
                 <p th:if="${page == 'games' or page == 'songs'}" th:text="'Sicuro di voler eliminare ' + ${item.name} + '?'"></p>
-                <p>Questa azione non può essere annullata.</p>
+                <p>Questa operazione non sarà reversibile.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>

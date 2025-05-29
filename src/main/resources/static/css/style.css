@@ -21,7 +21,7 @@ html {
   background-color: #282828 !important;
   color: white !important;
   text-align: center;
-  width: 10rem;
+  width: 10rem !important;
   height: 100% !important;
 }
 
@@ -276,18 +276,22 @@ html {
 
 .show-page-description {
   padding: 2rem;
+  min-width: 40%;
 }
 
 #game-platforms {
-  cursor: pointer;
+  /* cursor: pointer; */
+  padding-bottom: 2rem;
+  position: relative;
 }
 
 .platforms-info {
-  display: none;
+  /* display: none; */
+  position: absolute;
 }
 
-#game-platforms:hover .platforms-info {
-  display: block;
+#game-platforms .platforms-info {
+  /* display: block; */
   color: gray;
 }
 
@@ -385,6 +389,17 @@ video {
   margin-left: 1.5rem;
 }
 
+.create-update .error ul {
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.create-update .error li {
+  color: red;
+  margin: 0.5rem 0;
+  list-style: none;
+}
+
 /* * login */
 .background-login-img-container {
   position: absolute;
@@ -412,6 +427,8 @@ video {
   border-radius: 10px;
   padding: 1.5rem;
   margin: 2rem;
+
+  animation: login 0.5s ease-in-out;
 }
 
 .login-container input {
@@ -422,9 +439,16 @@ video {
   border-bottom: 0.7px solid white;
 }
 
+/* .login-container input:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border-bottom: 0;
+} */
+
 .login-container input:focus {
   background: transparent;
   color: white;
+  box-shadow: none;
 }
 
 .credential-error {
@@ -458,6 +482,17 @@ video {
   }
   to {
     height: 100%;
+  }
+}
+
+@keyframes login {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -505,6 +540,12 @@ video {
   .effect-yellow,
   .effect-purple {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .show-page-description li {
+    padding-bottom: 3rem !important;
   }
 }
 

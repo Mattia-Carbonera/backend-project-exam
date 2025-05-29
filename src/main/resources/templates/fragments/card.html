@@ -11,6 +11,7 @@
       <!-- games -->
       <img
         th:if="${page} == games"
+        th:unless="${item.image == '' || item.image == null}"
         class="card-img-top h-w-100"
         th:src="@{/img/games-img/} + ${item.image}"
         th:alt="${item.name}"
