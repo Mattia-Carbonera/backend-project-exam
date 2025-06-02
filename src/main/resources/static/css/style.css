@@ -60,6 +60,13 @@ html {
   gap: 1.7rem;
 }
 
+/* ! qui */
+/* .card-container::after {
+  content: "";
+  width: 10rem;
+  flex-grow: 1;
+} */
+
 .card-container a {
   text-decoration: none;
   color: inherit;
@@ -217,13 +224,20 @@ html {
 }
 
 .info-trash-bin {
-  position: sticky;
+  position: absolute;
   width: 200px;
-  bottom: 6rem;
+  top: -90px;
+  right: 0;
   left: 1rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   padding: 0.4rem 0.6rem;
+  color: #3c3c3c;
+}
+
+.info-trash-bin p {
+  margin: auto;
+  text-align: center;
 }
 
 .confirm-delete-modal {

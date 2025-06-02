@@ -6,7 +6,7 @@
 
     <main class="content-page">
       <div class="container">
-        <h1>[[${page}]]</h1>
+        <h1>[[${page.substring(0,1).toUpperCase + page.substring(1)}]]</h1>
 
         <!-- SEARCH -->
         <!-- games -->
@@ -42,7 +42,9 @@
           </form>
         </th:block>
 
-        <p class="mt-5">List of [[${page}]]:</p>
+        <h2 class="mt-5">
+          List of [[${page.substring(0,1).toUpperCase() + page.substring(1)}]]:
+        </h2>
 
         <div class="card-container">
           <!-- CARD -->
@@ -95,9 +97,6 @@
       </a>
 
       <!-- delete -->
-      <div class="info-trash-bin d-none">
-        <p>Trascina nel cestino l'elemento da eliminare</p>
-      </div>
 
       <!-- modal confirm delete -->
       <div
@@ -130,10 +129,14 @@
         class="trash-dropzone"
         onclick="infoTrashBinHandler()"
       >
+        <div class="info-trash-bin d-none">
+          <p>Trascina nel cestino l'elemento da eliminare</p>
+        </div>
         <img th:src="@{/img/trash-icon.webp}" alt="Trash" />
       </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
   </body>
 </html>
 
@@ -151,6 +154,16 @@
       event.dataTransfer.setData("text/plain", draggedCardId);
     });
   });
+
+  <!-- ? touchscreen detector -->
+
+  if (
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  ) {
+    document.getElementById("trash-bin").style.display = "none";
+  }
 
   // handler item dropped
   const trashBin = document.getElementById("trash-bin");
@@ -208,7 +221,7 @@
     document.body.style.overflow = "auto";
   });
 
-  <!-- * Info trash bin -->
+  // Info trash bin
   const infoTrashBin = document.querySelector(".info-trash-bin");
   const infoTrashBinHandler = () => {
     infoTrashBin.classList.toggle("d-none");
