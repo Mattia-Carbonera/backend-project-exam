@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/**").permitAll()
                 .requestMatchers("/api/**").permitAll()
                 .and().formLogin().loginPage("/login")
-                .and().logout()
+                .and().logout().logoutSuccessUrl("/")
                 .and().exceptionHandling()
                 .and().csrf().disable();
 
