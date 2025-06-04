@@ -51,7 +51,7 @@ public class GamesRestController {
 
     // show
     @GetMapping("/{id}")
-    public ResponseEntity<Game> getMethodName(@PathVariable Integer id) {
+    public ResponseEntity<Game> show(@PathVariable Integer id) {
 
         if (gamesService.findById(id).isEmpty()) {
             return new ResponseEntity<Game>(HttpStatus.NOT_FOUND);
