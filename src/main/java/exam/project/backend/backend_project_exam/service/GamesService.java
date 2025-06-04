@@ -21,7 +21,7 @@ public class GamesService {
     }
 
     // serach
-    public List<Game> findByNameContainingIgnoreCase(String name) {
+    public List<Game> findByName(String name) {
         return gameRepository.findByNameContainingIgnoreCase(name);
     }
 

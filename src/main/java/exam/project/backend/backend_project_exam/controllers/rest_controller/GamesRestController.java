@@ -41,11 +41,11 @@ public class GamesRestController {
     @GetMapping("/search")
     public ResponseEntity<List<Game>> findByName(@RequestParam String name) {
 
-        if (gamesService.findByNameContainingIgnoreCase(name).isEmpty()) {
+        if (gamesService.findByName(name).isEmpty()) {
             return new ResponseEntity<List<Game>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<Game>>(gamesService.findByNameContainingIgnoreCase(name), HttpStatus.OK);
+        return new ResponseEntity<List<Game>>(gamesService.findByName(name), HttpStatus.OK);
     }
     
 
